@@ -13,6 +13,7 @@
 
     ../../modules/hardware/drives
     ./hardware-configuration.nix
+    ./ga401.nix
   ];
 
   # Home-manager config
