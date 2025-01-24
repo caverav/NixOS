@@ -338,8 +338,8 @@
               "$mainMod, delete, exit" # kill hyperland session
               "$mainMod, W, togglefloating" # toggle the window on focus to float
               "$mainMod SHIFT, G, togglegroup" # toggle the window on focus to float
-              "ALT, return, fullscreen" # toggle the window on focus to fullscreen
-              "$mainMod ALT, L, exec, hyprlock" # lock screen
+              "$mainMod, F, fullscreen" # toggle the window on focus to fullscreen
+              "$mainMod CTRL, L, exec, hyprlock" # lock screen
               "$mainMod, backspace, exec, wlogout -b 4" # logout menu
               "$CONTROL, ESCAPE, exec, killall waybar || waybar" # toggle waybar
 
@@ -347,7 +347,7 @@
               "$mainMod, T, exec, $term"
               "$mainMod, E, exec, $file"
               "$mainMod, C, exec, $editor"
-              "$mainMod, F, exec, $browser"
+              # "$mainMod, F, exec, $browser"
               "$CONTROL ALT, DELETE, exec, $term -e '${getExe pkgs.btop}'" # system monitor
 
               "$mainMod, A, exec, pkill -x rofi || $launcher" # launch desktop applications
