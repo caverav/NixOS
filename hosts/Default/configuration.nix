@@ -40,14 +40,6 @@
     };
   };
 
-  # Add docker registry
-
-  # environment.etc."containers/registries.conf".text = ''
-  #   [registries.search]
-  #   registries = ['docker.io']
-  # '';
-
-
   environment.systemPackages = with pkgs; [
     obsidian
     burpsuite
