@@ -26,10 +26,35 @@
     })
   ];
 
+  # Enable common container config files in /etc/containers
+  virtualisation.containers.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
+  # Add docker registry
+
+  # environment.etc."containers/registries.conf".text = ''
+  #   [registries.search]
+  #   registries = ['docker.io']
+  # '';
+
+
   environment.systemPackages = with pkgs; [
     obsidian
     burpsuite
     opencommit
+    podman
+    podman-compose
+    dive # look into docker image layers
   ];
 
   networking.hostName = hostname; # Define your hostname.

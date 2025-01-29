@@ -241,7 +241,7 @@ in {
 
   nixpkgs = {
     config.allowUnfree = true;
-    # config.allowUnfreePredicate = _: true;
+    config.allowUnfreePredicate = _: true;
     inherit overlays;
   };
 
