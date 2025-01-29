@@ -51,10 +51,13 @@
   environment.systemPackages = with pkgs; [
     obsidian
     burpsuite
+    flameshot
     opencommit
+
     podman
     podman-compose
     dive # look into docker image layers
+
   ];
 
   networking.hostName = hostname; # Define your hostname.
