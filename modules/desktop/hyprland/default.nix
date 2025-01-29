@@ -352,7 +352,7 @@
               "$CONTROL ALT, DELETE, exec, $term -e '${getExe pkgs.btop}'" # system monitor
 
               "$mainMod, A, exec, pkill -x rofi || $launcher" # launch desktop applications
-              "$mainMod, SPACE, exec, pkill -x rofi || $launcher" # launch desktop applications
+              "$mainMod SHIFT, RETURN, exec, pkill -x rofi || $launcher" # launch desktop applications
               "$mainMod, Z, exec, pkill -x rofi || $hyprScriptsDir/emoji.sh" # launch emoji picker
               #"$mainMod, tab, exec, pkill -x rofi || $hyprScriptsDir/rofilaunch.sh w" # switch between desktop applications
               # "$mainMod, R, exec, pkill -x rofi || $hyprScriptsDir/rofilaunch.sh f" # browse system files
