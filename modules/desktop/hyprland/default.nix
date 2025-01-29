@@ -35,6 +35,7 @@
     ({...}: {
       home.packages = with pkgs; [
         # blueman
+        brightnessctl
         hyprpaper
         cliphist
         grimblast
