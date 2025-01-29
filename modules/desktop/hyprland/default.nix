@@ -367,7 +367,7 @@
 
               # Screenshot/Screencapture
               "$mainMod, P, exec, $hyprScriptsDir/screenshot.sh s" # drag to snip an area / click on a window to print it
-              "$mainMod CTRL, P, exec, $hyprScriptsDir/screenshot.sh sf" # frozen screen, drag to snip an area / click on a window to print it
+              "$mainMod SHIFT, S, exec, $hyprScriptsDir/screenshot.sh sf" # frozen screen, drag to snip an area / click on a window to print it
               "$mainMod, print, exec, $hyprScriptsDir/screenshot.sh m" # print focused monitor
               "$mainMod ALT, P, exec, $hyprScriptsDir/screenshot.sh p" # print all monitor outputs
 
