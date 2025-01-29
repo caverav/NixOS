@@ -63,7 +63,7 @@
           BetterSettings.enabled = false;
           BetterUploadButton.enabled = false;
           BiggerStreamPreview.enabled = false;
-          BlurNSFW.enabled = false;
+          BlurNSFW.enabled = true;
           CallTimer.enabled = false;
           ClearURLs.enabled = true;
           ClientTheme.enabled = false;
@@ -71,7 +71,7 @@
           ConsoleJanitor.enabled = false;
           ConsoleShortcuts.enabled = false;
           CopyEmojiMarkdown.enabled = false;
-          CopyFileContents.enabled = false;
+          CopyFileContents.enabled = true;
           CopyUserURLs.enabled = false;
           CrashHandler.enabled = true;
           CtrlEnterSend.enabled = false;
@@ -114,7 +114,7 @@
           MessageClickActions.enabled = false;
           MessageLatency.enabled = false;
           MessageLinkEmbeds.enabled = false;
-          MessageLogger.enabled = false;
+          MessageLogger.enabled = true;
           MessageTags.enabled = false;
           MoreCommands.enabled = false;
           MoreKaomoji.enabled = false;
@@ -173,12 +173,12 @@
           ShikiCodeblocks.enabled = false;
           ShowAllMessageButtons.enabled = false;
           ShowConnections.enabled = false;
-          ShowHiddenChannels.enabled = false;
-          ShowHiddenThings.enabled = false;
+          ShowHiddenChannels.enabled = true;
+          ShowHiddenThings.enabled = true;
           ShowMeYourName.enabled = false;
           ShowTimeoutDuration.enabled = false;
           SilentMessageToggle.enabled = false;
-          SilentTyping.enabled = false;
+          SilentTyping.enabled = true;
           SortFriendRequests.enabled = false;
           SpotifyControls.enabled = false;
           SpotifyCrack.enabled = false;
