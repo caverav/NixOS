@@ -36,6 +36,7 @@
         initExtra = ''
           # Secrets
           source ~/.secrets.zsh
+          export OLLAMA_API_BASE="http://localhost:11434"
           # Powerlevel10k Zsh theme
           source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
           test -f ~/.config/zsh/.p10k.zsh && source ~/.config/zsh/.p10k.zsh
