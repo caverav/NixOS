@@ -37,7 +37,7 @@ in {
     ../modules/programs/media/discord
     ../modules/programs/media/obs
     # ../modules/programs/misc/nix-ld
-    # ../modules/programs/misc/tlp
+    ../modules/programs/misc/tlp
     # ../modules/programs/misc/virt-manager
   ];
 
