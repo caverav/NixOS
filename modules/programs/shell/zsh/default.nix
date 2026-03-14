@@ -35,7 +35,7 @@
         };
         initExtra = ''
           # Secrets
-          source ~/.secrets.zsh
+          [ -f ~/.secrets.zsh ] && source ~/.secrets.zsh
           export OLLAMA_API_BASE="http://localhost:11434"
           # Powerlevel10k Zsh theme
           source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
@@ -234,6 +234,10 @@
           tp = "${pkgs.trash-cli}/bin/trash-put";
           tpr = "${pkgs.trash-cli}/bin/trash-restore";
           grep = "grep --color=always";
+
+          # Security
+          sorts="docker run -v $PWD:/app ghcr.io/fluidattacks/makes:latest m gitlab:fluidattacks/universe@trunk /sorts /app";
+          skims="docker run -v $PWD:/app ghcr.io/fluidattacks/makes:latest m gitlab:fluidattacks/universe@trunk /skims /app";
 
           # Nixos
           list-gens = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system/";

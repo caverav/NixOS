@@ -2,6 +2,9 @@
 target
 result
 result-*
+nohup.out
+hosts/local.nix
+hosts/**/*.local.nix
 
 [Bb]ackup
 [Bb]ackup/*

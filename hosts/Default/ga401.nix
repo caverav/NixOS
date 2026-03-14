@@ -16,7 +16,7 @@
     # This will also cause "PCI-Express Runtime D3 Power Management" to be enabled by default
     modesetting.enable = lib.mkDefault true;
 
-    dynamicBoost.enable = lib.mkDefault true;
+    dynamicBoost.enable = lib.mkForce false;
 
     prime = {
       amdgpuBusId = "PCI:4:0:0";
@@ -32,6 +32,24 @@
        KEYBOARD_KEY_ff31007c=f20    # fixes mic mute button
        KEYBOARD_KEY_ff3100b2=home   # Set fn+LeftArrow as Home
        KEYBOARD_KEY_ff3100b3=end    # Set fn+RightArrow as End
+    '';
+  };
+
+  powerManagement.cpuFreqGovernor = "powersave";
+
+  systemd.services.laptop-stability-cap = {
+    description = "Apply conservative laptop stability limits";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "multi-user.target" ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      if [ -w /sys/firmware/acpi/platform_profile ]; then
+        echo balanced > /sys/firmware/acpi/platform_profile || true
+      fi
+
+      if [ -w /sys/devices/system/cpu/cpufreq/boost ]; then
+        echo 0 > /sys/devices/system/cpu/cpufreq/boost || true
+      fi
     '';
   };
 }

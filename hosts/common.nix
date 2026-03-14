@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   overlays,
   username,
@@ -13,6 +14,7 @@
   self,
   ...
 }: let
+  localModule = ./local.nix;
   sddm-themes = pkgs.callPackage ../modules/themes/sddm/themes.nix {};
   scripts = pkgs.callPackage ../modules/scripts {};
 in {
@@ -23,7 +25,7 @@ in {
     ../modules/programs/shell/bash
     ../modules/programs/shell/zsh
     ../modules/programs/browser/firefox
-    ../modules/programs/editor/nixvim
+    # ../modules/programs/editor/nixvim
     #../modules/programs/editor/vscode
     ../modules/programs/cli/starship
     ../modules/programs/cli/tmux
@@ -36,10 +38,10 @@ in {
     ../modules/programs/media/spicetify
     ../modules/programs/media/discord
     ../modules/programs/media/obs
-    # ../modules/programs/misc/nix-ld
-    ../modules/programs/misc/tlp
+    ../modules/programs/misc/nix-ld
+    # ../modules/programs/misc/tlp
     # ../modules/programs/misc/virt-manager
-  ];
+  ] ++ lib.optional (builtins.pathExists localModule) localModule;
 
   users.users.${username} = {
     isNormalUser = true;
@@ -203,7 +205,7 @@ in {
       after = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+        ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -312,8 +314,7 @@ in {
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  # Keep the firewall enabled by default. Open ports per host or service.
 
   nix = {
     # Nix Package Manager Settings

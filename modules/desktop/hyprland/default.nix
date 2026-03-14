@@ -10,10 +10,10 @@
 }: {
   imports = [
     ../../themes/Catppuccin # Catppuccin GTK and QT themes
-    ./programs/waybar
+    # ./programs/waybar
     ./programs/wlogout
     ./programs/rofi
-    ./programs/dunst
+    # ./programs/dunst
     ./programs/hyprlock
     ./programs/swaync
   ];
@@ -48,7 +48,7 @@
         slurp
         swappy
         swaynotificationcenter
-        waybar
+        # waybar
         wtype
         wl-clipboard
         xdotool
@@ -115,8 +115,8 @@
             #"[workspace 9 silent] alacritty -e cava"
 
             "hyprpaper"
-            "sleep 1 && waybar"
-            "swaync"
+            "sleep 1 && hyprpanel"
+            # "swaync"
             "pamixer --set-volume 50"
             # "dunst"
             # "blueman-applet"
@@ -212,8 +212,8 @@
             ];
           };
           render = {
-            explicit_sync = 2; # 0 = off, 1 = on, 2 = auto based on gpu driver.
-            explicit_sync_kms = 2; # 0 = off, 1 = on, 2 = auto based on gpu driver.
+            # explicit_sync = 2; # 0 = off, 1 = on, 2 = auto based on gpu driver.
+            # explicit_sync_kms = 2; # 0 = off, 1 = on, 2 = auto based on gpu driver.
             direct_scanout = false; # Set to true for less Fullscreen game lag (may cause glitches).
           };
           misc = {
@@ -223,10 +223,10 @@
             vrr = 1; # enable variable refresh rate (0=off, 1=on, 2=fullscreen only)
           };
           xwayland.force_zero_scaling = true;
-          gestures = {
-            workspace_swipe = true;
-            workspace_swipe_fingers = 3;
-          };
+          # gestures = {
+          #   workspace_swipe = true;
+          #   workspace_swipe_fingers = 3;
+          # };
           dwindle = {
             pseudotile = true;
             preserve_split = true;
@@ -322,8 +322,8 @@
             "$mainMod SHIFT, j, resizeactive, 0 30"
 
             # Functional keybinds
-            ",XF86MonBrightnessDown,exec,light -U 20"
-            ",XF86MonBrightnessUp,exec,light -A 20"
+            ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
+            ",XF86MonBrightnessUp,exec,brightnessctl set +5%"
             ",XF86AudioLowerVolume,exec,pamixer -d 2"
             ",XF86AudioRaiseVolume,exec,pamixer -i 2"
           ];
@@ -342,7 +342,7 @@
               "$mainMod, F, fullscreen" # toggle the window on focus to fullscreen
               "$mainMod CTRL, L, exec, hyprlock" # lock screen
               "$mainMod, backspace, exec, wlogout -b 4" # logout menu
-              "$CONTROL, ESCAPE, exec, killall waybar || waybar" # toggle waybar
+              "$CONTROL, ESCAPE, exec, killall hyprpanel || hyprpanel" # toggle hyprpanel
 
               "$mainMod, Return, exec, $term"
               "$mainMod, T, exec, $term"

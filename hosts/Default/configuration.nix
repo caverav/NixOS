@@ -16,17 +16,29 @@
     ./ga401.nix
   ];
 
+  nix.settings = {
+    cores = 4;
+    max-jobs = 2;
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+  };
+
   # Home-manager config
   home-manager.sharedModules = [
     (_: {
       home.packages = with pkgs; [
-        okular # pdf viwer
+        kdePackages.okular
         # gparted
       ];
     })
   ];
 
   # Enable common container config files in /etc/containers
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
   virtualisation.containers.enable = true;
   virtualisation = {
     podman = {
@@ -42,15 +54,39 @@
 
   environment.systemPackages = with pkgs; [
     obsidian
-    burpsuite
-    flameshot
+    openvpn
     opencommit
+    vscode
+    texliveFull
+    zathura
+    mupdf
+    windsurf
+    neovim
+
+    (flameshot.override { enableWlrSupport = true; })
+    burpsuite
+    sqlmap
+    ffuf
+    snyk
 
     podman
     podman-compose
     dive # look into docker image layers
 
+    hyprpanel
+    libgtop
+    dart-sass
+    upower
+    gpustat
+    # power-profiles-daemon
+    gpu-screen-recorder
+    hyprsunset
   ];
+  
+  services.envfs.enable = true;
+
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 
   networking.hostName = hostname; # Define your hostname.
 
