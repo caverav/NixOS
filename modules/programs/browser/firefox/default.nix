@@ -323,16 +323,8 @@ in {
                   Status = "locked";
                 };
 
-                # Do not tell what plugins we have enabled: https://mail.mozilla.org/pipermail/firefox-dev/2013-November/001186.html
-                "plugins.enumerable_names" = "";
-                "plugin.state.flash" = 0;
-                "browser.search.update" = false;
-                "extensions.getAddons.cache.enabled" = lock-false;
-                "extensions.ui.sitepermission.hidden" = lock-true;
-                "extensions.ui.locale.hidden" = lock-true;
-
                 "browser.uiCustomization.state" = builtins.toJSON {
-                  currentVersion = 20;
+                  currentVersion = 23;
                   newElementCount = 7;
                   placements = {
                     widget-overflow-fixed-list = [];
@@ -343,11 +335,11 @@ in {
                       "stop-reload-button"
                       "urlbar-container"
                       "downloads-button"
-
-                      # Extensions
                       "ublock0_raymondhill_net-browser-action"
-                      "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
                       "addon_darkreader_org-browser-action"
+                      "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
+                      "foxyproxy_eric_h_jung-browser-action"
+                      "wappalyzer_crunchlabz_com-browser-action"
                       "unified-extensions-button"
                     ];
                     toolbar-menubar = ["menubar-items"];
@@ -357,17 +349,20 @@ in {
                       "new-tab-button"
                       "alltabs-button"
                     ];
+                    vertical-tabs = [];
                     PersonalToolbar = ["personal-bookmarks" "managed-bookmarks"];
                   };
                   seen = [
                     "developer-button"
                     "save-to-pocket-button"
-                    "addon_darkreader_org-browser-action"
                     "ublock0_raymondhill_net-browser-action"
-                    "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
-                    "_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action"
-                    "sponsorBlocker@ajay.app-browser-action"
-                    "firefox@betterttv.net-browser-action"
+                    "addon_darkreader_org-browser-action"
+                    "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
+                    "foxyproxy_eric_h_jung-browser-action"
+                    "wappalyzer_crunchlabz_com-browser-action"
+                    "_c2ecdf60-7077-4bfa-b9c2-4892a8ded8c6_-browser-action"
+                    "jid1-ZAdIEUB7XOzOJw_jetpack-browser-action"
+                    "simple-tab-groups_drive4ik-browser-action"
                   ];
                   dirtyAreaCache = [
                     "nav-bar"
@@ -376,10 +371,242 @@ in {
                     "TabsToolbar"
                     "unified-extensions-area"
                     "widget-overflow-fixed-list"
+                    "vertical-tabs"
                   ];
                 };
+
+                # Do not tell what plugins we have enabled: https://mail.mozilla.org/pipermail/firefox-dev/2013-November/001186.html
+                "plugins.enumerable_names" = "";
+                "plugin.state.flash" = 0;
+                "browser.search.update" = false;
+                "extensions.getAddons.cache.enabled" = lock-false;
+                "extensions.ui.sitepermission.hidden" = lock-true;
+                "extensions.ui.locale.hidden" = lock-true;
+
               };
             };
+          };
+
+          profiles.default = {
+            id = 0;
+            name = "default";
+            isDefault = true;
+            path = "default";
+            settings = {
+              "browser.startup.homepage" = "about:home";
+              "browser.newtabpage.enabled" = true;
+              "browser.toolbars.bookmarks.visibility" = "always";
+              "browser.uidensity" = 1;
+              "browser.compactmode.show" = true;
+              "sidebar.revamp" = false;
+              "browser.tabs.tabmanager.enabled" = false;
+              "browser.tabs.closeWindowWithLastTab" = false;
+              "browser.urlbar.trimURLs" = false;
+              "browser.urlbar.suggest.quickactions" = false;
+              "browser.urlbar.showSearchSuggestionsFirst" = false;
+            };
+            userChrome = ''
+              :root {
+                --fx-bg: #11111b;
+                --fx-surface: rgba(30, 30, 46, 0.86);
+                --fx-surface-2: rgba(49, 50, 68, 0.82);
+                --fx-border: rgba(180, 190, 254, 0.18);
+                --fx-text: #cdd6f4;
+                --fx-subtle: #a6adc8;
+                --fx-accent: #89b4fa;
+                --fx-accent-2: #cba6f7;
+                --fx-glow: rgba(137, 180, 250, 0.16);
+                --toolbar-bgcolor: transparent !important;
+                --toolbar-field-background-color: transparent !important;
+                --toolbar-field-focus-background-color: transparent !important;
+                --lwt-accent-color: var(--fx-bg) !important;
+                --lwt-text-color: var(--fx-text) !important;
+                --arrowpanel-background: #1e1e2e !important;
+                --arrowpanel-color: var(--fx-text) !important;
+                --arrowpanel-border-color: var(--fx-border) !important;
+                --tab-border-radius: 16px !important;
+              }
+
+              #main-window {
+                background: linear-gradient(180deg, #0b1020 0%, #11111b 100%) !important;
+              }
+
+              #navigator-toolbox {
+                background: transparent !important;
+                border: none !important;
+                padding: 10px 14px 0 !important;
+              }
+
+              #nav-bar,
+              #PersonalToolbar,
+              #TabsToolbar {
+                background: var(--fx-surface) !important;
+                border: 1px solid var(--fx-border) !important;
+                border-radius: 20px !important;
+                box-shadow:
+                  0 18px 40px rgba(0, 0, 0, 0.30),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+                margin-bottom: 10px !important;
+              }
+
+              #nav-bar {
+                padding: 8px 10px !important;
+              }
+
+              #TabsToolbar {
+                padding: 6px 8px !important;
+              }
+
+              .tab-background {
+                border-radius: 14px !important;
+                margin-block: 4px !important;
+                transition: background-color 120ms ease, box-shadow 120ms ease !important;
+              }
+
+              .tabbrowser-tab:hover .tab-background {
+                background: rgba(69, 71, 90, 0.72) !important;
+              }
+
+              .tabbrowser-tab[selected] .tab-background {
+                background: linear-gradient(135deg, rgba(137, 180, 250, 0.20), rgba(203, 166, 247, 0.18)) !important;
+                box-shadow: 0 0 0 1px rgba(137, 180, 250, 0.22) inset !important;
+              }
+
+              .tab-label,
+              #PersonalToolbar .toolbarbutton-text {
+                color: var(--fx-text) !important;
+              }
+
+              #urlbar,
+              #searchbar {
+                background: rgba(17, 17, 27, 0.66) !important;
+                border: 1px solid transparent !important;
+                border-radius: 16px !important;
+                min-height: 42px !important;
+                box-shadow: none !important;
+              }
+
+              #urlbar:hover,
+              #searchbar:hover {
+                background: rgba(24, 24, 37, 0.90) !important;
+              }
+
+              #urlbar[open],
+              #urlbar:focus-within,
+              #searchbar:focus-within {
+                background: rgba(17, 17, 27, 0.96) !important;
+                border-color: rgba(137, 180, 250, 0.50) !important;
+                box-shadow: 0 0 0 4px var(--fx-glow) !important;
+              }
+
+              #urlbar-background {
+                border: none !important;
+                background: transparent !important;
+              }
+
+              #urlbar-input::placeholder {
+                color: var(--fx-subtle) !important;
+              }
+
+              #urlbar-input,
+              #searchbar .searchbar-textbox,
+              #searchbar input {
+                color: var(--fx-text) !important;
+                caret-color: var(--fx-accent) !important;
+              }
+
+              #urlbar-input::selection,
+              #searchbar .searchbar-textbox::selection,
+              #searchbar input::selection {
+                background: rgba(137, 180, 250, 0.34) !important;
+                color: #f5f7ff !important;
+              }
+
+              .urlbar-input-box {
+                color: var(--fx-text) !important;
+              }
+
+              #urlbar[open] #urlbar-input,
+              #urlbar:focus-within #urlbar-input {
+                color: #f5f7ff !important;
+              }
+
+              toolbarbutton,
+              .toolbarbutton-1 {
+                border-radius: 14px !important;
+                transition: background-color 120ms ease, transform 120ms ease !important;
+              }
+
+              toolbarbutton:hover,
+              .toolbarbutton-1:hover {
+                background: rgba(69, 71, 90, 0.70) !important;
+              }
+
+              toolbarbutton[open],
+              .toolbarbutton-1[open] {
+                background: rgba(137, 180, 250, 0.18) !important;
+              }
+
+              #urlbar-results {
+                background: rgba(30, 30, 46, 0.98) !important;
+                border: 1px solid var(--fx-border) !important;
+                border-radius: 18px !important;
+                overflow: hidden !important;
+              }
+
+              .urlbarView-row[selected] {
+                background: linear-gradient(90deg, rgba(137, 180, 250, 0.18), rgba(203, 166, 247, 0.14)) !important;
+                color: var(--fx-text) !important;
+              }
+
+              .urlbarView-title,
+              .urlbarView-url,
+              .search-one-offs button {
+                color: var(--fx-text) !important;
+              }
+
+              #sidebar-box,
+              #sidebar-header {
+                background: rgba(17, 17, 27, 0.92) !important;
+                color: var(--fx-text) !important;
+                border-color: var(--fx-border) !important;
+              }
+
+              #tabbrowser-tabbox,
+              #appcontent,
+              browser[type="content-primary"],
+              #browser {
+                background: #0b1020 !important;
+              }
+            '';
+            userContent = ''
+              @-moz-document url("about:newtab"), url("about:home") {
+                body {
+                  background:
+                    radial-gradient(circle at top, rgba(137, 180, 250, 0.14), transparent 38%),
+                    radial-gradient(circle at 80% 20%, rgba(203, 166, 247, 0.12), transparent 26%),
+                    #11111b !important;
+                }
+
+                .search-handoff-button,
+                .top-site-outer .tile,
+                .card,
+                .personalize-button {
+                  border-radius: 20px !important;
+                  border: 1px solid rgba(180, 190, 254, 0.16) !important;
+                  background: rgba(30, 30, 46, 0.78) !important;
+                  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22) !important;
+                }
+
+                .logo,
+                .wordmark,
+                .top-site-outer .title,
+                .search-inner-wrapper,
+                .top-site-button .title {
+                  color: #cdd6f4 !important;
+                }
+              }
+            '';
           };
 
           /*

@@ -117,7 +117,7 @@
         }
       '';
       home.file.".config/swaync/style.css".text = ''
-        @define-color shadow rgba(0, 0, 0, 0.25);
+        @define-color shadow rgba(0, 0, 0, 0.35);
         /*
         *
         * Catppuccin Mocha palette
@@ -160,7 +160,7 @@
         @define-color mauve_lighter #caa6f7;
 
         * {
-          font-family: "Product Sans";
+          font-family: "JetBrainsMono Nerd Font";
           background-clip: border-box;
         }
 
@@ -177,7 +177,7 @@
           box-shadow: none;
           /* margin: 0px; */
           /* margin: -15px -10px -15px -10px; */
-          border-radius: 4px;
+          border-radius: 16px;
           background: inherit;
           /* background: @theme_bg_color; */
           /* background: shade(alpha(@borders, 2.55), 0.25); */
@@ -198,9 +198,9 @@
 
         .notification-content {
           min-height: 64px;
-          margin: 10px;
+          margin: 14px;
           padding: 0px;
-          border-radius: 0px;
+          border-radius: 16px;
         }
 
         .close-button {
@@ -216,7 +216,7 @@
 
 
         .notification-default-action {
-          border-radius: 4px;
+          border-radius: 14px;
         }
 
         /* When alternative actions are visible */
@@ -283,12 +283,12 @@
         /* Control center */
 
         .control-center {
-          background: alpha(@crust, .80);
-          border-radius: 15px;
-          border: 0px solid @selected;
-          box-shadow: 0 0 10px 0 rgba(0,0,0,.80);
-          margin: 10px;
-          padding: 4px;
+          background: alpha(@mantle, .88);
+          border-radius: 24px;
+          border: 1px solid alpha(@lavender, 0.18);
+          box-shadow: 0 18px 48px 0 rgba(0,0,0,.55);
+          margin: 18px;
+          padding: 10px;
         }
 
         /* .right.overlay-indicator { */
@@ -297,7 +297,7 @@
 
         .control-center-list {
           /* background: @base; */
-          background: alpha(@crust, .80);
+          background: transparent;
           min-height: 5px;
           /* border: 1px solid @surface1; */
           border-top: none;
@@ -334,11 +334,12 @@
         .notification-row {
           outline: none;
           transition: all 1s ease;
-          background: alpha(@mantle, .80);
+          background: alpha(@base, .92);
           /* background: @theme_bg_color; */
           border: 0px solid @crust;
-          margin: 10px 5px 0px 5px;
-          border-radius: 14px;
+          margin: 12px 6px 0px 6px;
+          border-radius: 18px;
+          box-shadow: inset 0 1px 0 alpha(@text, 0.04);
           /* box-shadow: 0px 0px 4px black; */
           /* background: alpha(currentColor, 0.05); */
         }
@@ -381,23 +382,24 @@
         }
 
         .widget-title > label {
-          margin: 18px 10px;
-          font-size: 20px;
-          font-weight: 500;
+          margin: 18px 14px;
+          font-size: 18px;
+          font-weight: 700;
         }
 
         .widget-title > button {
           font-weight: 700;
-          padding: 7px 3px;
-          margin-right: 10px;
-          background: transparent;
+          padding: 8px 12px;
+          margin-right: 12px;
+          background: alpha(@surface0, 0.8);
           color: @text;
           /* color: @theme_text_color; */
           border: none;
-          border-radius: 4px;
+          border-radius: 999px;
         }
         .widget-title > button:hover {
-          background: @base;
+          background: @mauve;
+          color: @base;
           /* background: alpha(currentColor, 0.1); */
         }
 
@@ -406,7 +408,7 @@
           margin: 0px;
           padding: 0px;
           min-height: 5px;
-          background: alpha(@mantle, .80);
+          background: alpha(@surface0, .65);
           /* background: @theme_bg_color; */
           border-radius: 0px 0px 4px 4px;
           /* border: 1px solid @surface1; */
@@ -428,11 +430,11 @@
         .widget-menubar > box > box {
           margin: 5px 10px 5px 10px;
           min-height: 40px;
-          border-radius: 4px;
+          border-radius: 14px;
           background: transparent;
         }
         .widget-menubar > box > box > button {
-          background: alpha(@mantle, .80);
+          background: alpha(@surface0, .65);
           /* background: alpha(currentColor, 0.05); */
           min-width: 185px;
           min-height: 50px;
@@ -456,7 +458,7 @@
           margin: 5px 10px 5px 10px;
           background: alpha(@mantle, .80);
           /* background: alpha(currentColor, 0.05); */
-          border-radius: 4px;
+          border-radius: 14px;
         }
         .widget-menubar > box > revealer > box > button {
           background: transparent;

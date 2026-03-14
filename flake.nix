@@ -27,9 +27,9 @@
     settings = {
       # User configuration
       username = "camilo"; # no need to touch this since install.sh uses sed to replace this (otherwise if manually installing then you need to change this yourself)
-      terminal = "kitty"; # kitty or alacritty
+      terminal = "warp-terminal"; # warp-terminal, kitty or alacritty
       terminalFileManager = "yazi"; # yazi or lf
-      wallpaper = "harry.jpg"; # see modules/themes/wallpapers
+      wallpaper = "nixos_wallpaper.png"; # see modules/themes/wallpapers
 
       # System configuration
       system = "x86_64-linux";

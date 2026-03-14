@@ -81,9 +81,9 @@
           # "$launcher" = "pkill rofi || rofi -show drun -modi drun,filebrowser,run,window -theme $XDG_CONFIG_HOME/rofi/launchers/type-4/style-7.rasi";
           # "$launcher" = "pkill rofi || rofi -show drun -modi drun,filebrowser,run,window -theme $XDG_CONFIG_HOME/rofi/launchers/type-4/style-3.rasi";
           "$launcher" = "pkill rofi || rofi -show drun -modi drun,filebrowser,run,window -theme $XDG_CONFIG_HOME/rofi/launchers/type-2/style-2.rasi";
-          "$term" = "${getExe pkgs.${terminal}}";
+          "$term" = "${getExe' pkgs.${terminal} terminal}";
           "$editor" = "code --disable-gpu";
-          "$file" = "$term --class \"terminalFileManager\" -e ${terminalFileManager}";
+          "$file" = "${getExe pkgs.alacritty} --class \"terminalFileManager\" -e ${terminalFileManager}";
           "$browser" = "firefox";
 
           env = [
@@ -143,24 +143,29 @@
             force_no_accel = true;
           };
           general = {
-            gaps_in = 4;
-            gaps_out = 9;
-            border_size = 2;
-            "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
-            "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
+            gaps_in = 6;
+            gaps_out = 14;
+            border_size = 3;
+            "col.active_border" = "rgba(cba6f7ff) rgba(89dcebff) 45deg";
+            "col.inactive_border" = "rgba(585b70cc) rgba(313244cc) 45deg";
             resize_on_border = true;
             layout = "master"; # dwindle or master
             # allow_tearing = true; # Allow tearing for games (use immediate window rules for specific games or all titles)
           };
           decoration = {
-            shadow.enabled = false;
-            rounding = 10;
-            dim_special = 0.3;
+            shadow = {
+              enabled = true;
+              color = "rgba(11111bdd)";
+              range = 28;
+              render_power = 4;
+            };
+            rounding = 18;
+            dim_special = 0.25;
             blur = {
               enabled = true;
               special = true;
-              size = 6;
-              passes = 3;
+              size = 8;
+              passes = 4;
               new_optimizations = true;
               ignore_opacity = true;
               xray = false;
@@ -252,19 +257,19 @@
             "workspace 6, title:(.*)(Spotify)(.*)$"
             "workspace 8, class:^(rebuildScript)$"
 
-            "opacity 0.80 0.80,class:^(alacritty)$"
+            "opacity 0.92 0.88,class:^(alacritty)$"
             "opacity 1.00 1.00,class:^(firefox)$"
             "opacity 0.90 0.90,class:^(Brave-browser)$"
-            "opacity 0.80 0.80,class:^(Steam)$"
-            "opacity 0.80 0.80,class:^(steam)$"
-            "opacity 0.80 0.80,class:^(steamwebhelper)$"
-            "opacity 0.80 0.80,class:^(Spotify)$"
-            "opacity 0.80 0.80,title:(.*)(Spotify)(.*)$"
+            "opacity 0.88 0.84,class:^(Steam)$"
+            "opacity 0.88 0.84,class:^(steam)$"
+            "opacity 0.88 0.84,class:^(steamwebhelper)$"
+            "opacity 0.90 0.86,class:^(Spotify)$"
+            "opacity 0.90 0.86,title:(.*)(Spotify)(.*)$"
             # "opacity 0.80 0.80,class:^(VSCodium)$"
             # "opacity 0.80 0.80,class:^(codium-url-handler)$"
-            "opacity 0.80 0.80,class:^(Code)$"
-            "opacity 0.80 0.80,class:^(code-url-handler)$"
-            "opacity 0.80 0.80,class:^(kitty)$"
+            "opacity 0.95 0.90,class:^(Code)$"
+            "opacity 0.95 0.90,class:^(code-url-handler)$"
+            "opacity 0.94 0.90,class:^(kitty)$"
             "opacity 0.80 0.80,class:^(terminalFileManager)$"
             "opacity 0.80 0.80,class:^(rebuildScript)$"
             "opacity 0.80 0.80,class:^(org.kde.dolphin)$"

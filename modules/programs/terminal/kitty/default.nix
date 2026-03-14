@@ -6,7 +6,7 @@
         enable = true;
         font = {
           name = "JetBrainsMono Nerd Font";
-          size = 14.0;
+          size = 13.5;
         };
         themeFile = "Catppuccin-Mocha";
         settings = {
@@ -23,6 +23,11 @@
           enable_audio_bell = false;
           mouse_hide_wait = 60;
           update_check_interval = 0;
+          background_opacity = "0.92";
+          background_blur = 24;
+          window_padding_width = 14;
+          placement_strategy = "center";
+          hide_window_decorations = "titlebar-only";
 
           ## Tabs
           tab_title_template = "{index}";

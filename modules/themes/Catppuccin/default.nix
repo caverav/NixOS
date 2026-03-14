@@ -29,6 +29,9 @@ in {
       dconf.settings = {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
+          font-name = "JetBrainsMono Nerd Font 11";
+          document-font-name = "JetBrainsMono Nerd Font 11";
+          monospace-font-name = "JetBrainsMono Nerd Font 11";
         };
       };
 
@@ -47,6 +50,10 @@ in {
 
       gtk = {
         enable = true;
+        font = {
+          name = "JetBrainsMono Nerd Font";
+          size = 11;
+        };
         theme = {
           name = "catppuccin-mocha-mauve-compact";
           package = catppuccin-gtk.override {

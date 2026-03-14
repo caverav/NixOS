@@ -5,7 +5,7 @@
   ...
 }: {
   home-manager.sharedModules = [
-    (_: {
+    ({config, ...}: {
       home.file.".config/zsh/.p10k.zsh" = {
         source = ./.p10k.zsh;
       };
@@ -19,8 +19,8 @@
         syntaxHighlighting.enable = true;
         enableCompletion = true;
         history.size = 100000;
-        history.path = "\${XDG_DATA_HOME}/zsh/history";
-        dotDir = ".config/zsh";
+        history.path = "${config.xdg.dataHome}/zsh/history";
+        dotDir = "${config.xdg.configHome}/zsh";
         #plugins = [
         #  {
         #    name = "romkatv/powerlevel10k";
@@ -33,7 +33,7 @@
           enable = true;
           plugins = ["git" "gitignore" "aliases" "z"];
         };
-        initExtra = ''
+        initContent = ''
           # Secrets
           [ -f ~/.secrets.zsh ] && source ~/.secrets.zsh
           export OLLAMA_API_BASE="http://localhost:11434"
