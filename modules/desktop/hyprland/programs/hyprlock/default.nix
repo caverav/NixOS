@@ -1,4 +1,6 @@
-{wallpaper, ...}: {
+{wallpaper, ...}: let
+  theme = import ../../../../themes/tokens.nix;
+in {
   home-manager.sharedModules = [
     (_: {
       programs.hyprlock = {
@@ -55,7 +57,7 @@
               # text = "cmd[update:1000] echo \"<b><big> $(date +\"%H:%M:%S\") </big></b>\"";
               text = "$TIME";
               font_size = 72;
-              font_family = "JetBrains Mono Nerd Font 10";
+              font_family = theme.fonts.ui;
               color = "rgb(205, 214, 244)";
               position = "0, 0";
               valign = "center";
@@ -66,7 +68,7 @@
               text = "welcome back, <span text_transform=\"capitalize\" weight=\"bold\">$USER</span>";
               color = "rgb(180, 190, 254)";
               font_size = 18;
-              font_family = "JetBrains Mono Nerd Font 10";
+              font_family = theme.fonts.ui;
               position = "0, 72";
               halign = "center";
               valign = "center";
@@ -76,7 +78,7 @@
               text = "layout  $LAYOUT";
               color = "rgb(137, 180, 250)";
               font_size = 14;
-              font_family = "JetBrains Mono Nerd Font 10";
+              font_family = theme.fonts.ui;
               position = "0, 34";
               halign = "center";
               valign = "bottom";

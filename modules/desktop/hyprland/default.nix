@@ -10,6 +10,7 @@
 }: {
   imports = [
     ../../themes/Catppuccin # Catppuccin GTK and QT themes
+    ./programs/quickshell
     # ./programs/waybar
     ./programs/wlogout
     ./programs/rofi
@@ -31,6 +32,7 @@
 
   home-manager.sharedModules = let
     inherit (lib) getExe getExe';
+    theme = import ../../themes/tokens.nix;
   in [
     ({...}: {
       home.packages = with pkgs; [
@@ -115,7 +117,9 @@
             #"[workspace 9 silent] alacritty -e cava"
 
             "hyprpaper"
-            "sleep 1 && hyprpanel"
+            "pkill -x hyprpanel"
+            "pkill -x waybar"
+            "pkill -f /tmp/quickshell-camilo-poc"
             # "swaync"
             "pamixer --set-volume 50"
             # "dunst"
@@ -143,9 +147,9 @@
             force_no_accel = true;
           };
           general = {
-            gaps_in = 6;
-            gaps_out = 14;
-            border_size = 3;
+            gaps_in = theme.layout.gapsIn;
+            gaps_out = theme.layout.gapsOut;
+            border_size = theme.layout.borderSize;
             "col.active_border" = "rgba(cba6f7ff) rgba(89dcebff) 45deg";
             "col.inactive_border" = "rgba(585b70cc) rgba(313244cc) 45deg";
             resize_on_border = true;
@@ -159,7 +163,7 @@
               range = 28;
               render_power = 4;
             };
-            rounding = 18;
+            rounding = theme.layout.radius;
             dim_special = 0.25;
             blur = {
               enabled = true;
@@ -347,7 +351,6 @@
               "$mainMod, F, fullscreen" # toggle the window on focus to fullscreen
               "$mainMod CTRL, L, exec, hyprlock" # lock screen
               "$mainMod, backspace, exec, wlogout -b 4" # logout menu
-              "$CONTROL, ESCAPE, exec, killall hyprpanel || hyprpanel" # toggle hyprpanel
 
               "$mainMod, Return, exec, $term"
               "$mainMod, T, exec, $term"

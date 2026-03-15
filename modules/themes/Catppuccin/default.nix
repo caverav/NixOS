@@ -3,6 +3,7 @@
   wallpaper,
   ...
 }: let
+  theme = import ../tokens.nix;
   catppuccin-gtk = pkgs.catppuccin-gtk.overrideAttrs {
     src = pkgs.fetchFromGitHub {
       owner = "catppuccin";
@@ -29,9 +30,9 @@ in {
       dconf.settings = {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
-          font-name = "JetBrainsMono Nerd Font 11";
-          document-font-name = "JetBrainsMono Nerd Font 11";
-          monospace-font-name = "JetBrainsMono Nerd Font 11";
+          font-name = "${theme.fonts.ui} ${toString theme.fonts.size}";
+          document-font-name = "${theme.fonts.ui} ${toString theme.fonts.size}";
+          monospace-font-name = "${theme.fonts.ui} ${toString theme.fonts.size}";
         };
       };
 
@@ -39,8 +40,8 @@ in {
         gtk.enable = true;
         x11.enable = true;
         package = pkgs.bibata-cursors;
-        name = "Bibata-Modern-Classic";
-        size = 24;
+        name = theme.cursor.name;
+        size = theme.cursor.size;
       };
 
       qt = {
@@ -51,8 +52,8 @@ in {
       gtk = {
         enable = true;
         font = {
-          name = "JetBrainsMono Nerd Font";
-          size = 11;
+          name = theme.fonts.ui;
+          size = theme.fonts.size;
         };
         theme = {
           name = "catppuccin-mocha-mauve-compact";
@@ -78,9 +79,18 @@ in {
         };
       };
       xdg.configFile = {
-        "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-        "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-        "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+        "gtk-4.0/assets" = {
+          source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+          force = true;
+        };
+        "gtk-4.0/gtk.css" = {
+          source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+          force = true;
+        };
+        "gtk-4.0/gtk-dark.css" = {
+          source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+          force = true;
+        };
       };
     })
   ];

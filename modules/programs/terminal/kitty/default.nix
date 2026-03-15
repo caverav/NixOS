@@ -1,12 +1,14 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  theme = import ../../../themes/tokens.nix;
+in {
   fonts.packages = with pkgs.nerd-fonts; [jetbrains-mono];
   home-manager.sharedModules = [
     (_: {
       programs.kitty = {
         enable = true;
         font = {
-          name = "JetBrainsMono Nerd Font";
-          size = 13.5;
+          name = theme.fonts.ui;
+          size = theme.fonts.terminalSize;
         };
         themeFile = "Catppuccin-Mocha";
         settings = {

@@ -302,7 +302,6 @@ in {
                 "extensions.screenshots.disabled" = lock-true;
                 "extensions.getAddons.showPane" = lock-false;
                 "extensions.htmlaboutaddons.recommendations.enabled" = lock-false;
-                "extensions.extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
                 # "extensions.update.enabled" = false;
                 "extensions.webcompat.enable_picture_in_picture_overrides" = true;
                 "extensions.webcompat.enable_shims" = true;
@@ -404,6 +403,8 @@ in {
               "browser.urlbar.trimURLs" = false;
               "browser.urlbar.suggest.quickactions" = false;
               "browser.urlbar.showSearchSuggestionsFirst" = false;
+              "extensions.activeThemeID" = "default-theme@mozilla.org";
+              "layout.css.prefers-color-scheme.content-override" = 2;
             };
             userChrome = ''
               :root {

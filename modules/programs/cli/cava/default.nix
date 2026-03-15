@@ -1,6 +1,8 @@
 {...}: {
   home-manager.sharedModules = [
     (_: {
+      xdg.configFile."cava/config".force = true;
+
       programs.cava = {
         enable = true;
         settings = {
